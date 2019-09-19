@@ -29,6 +29,7 @@ function App(props) {
   const [quarter, setQuarter] = useState(1);
 
   //#region Internal Functions
+  //TODO: Implement countdown timer
   const toggleTimer = (timerValue) => {
     //Start/Stop Timer each time button is pressed.
     setTimer(timerValue);
