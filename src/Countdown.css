@@ -1,0 +1,69 @@
+.Timers {
+  display: flex;
+  justify-content: center;
+}
+@media (max-width: 900px) {
+  .Timers {
+    flex-direction: column;
+
+    align-items: center;
+  }
+}
+.ButtonBox {
+  margin-left: auto;
+  margin-right: auto;
+  border: 2px solid grey;
+  border-radius: 4px;
+  padding: 20px;
+  /* width: 400px; */
+  background-color: rgb(22, 27, 31);
+  box-shadow: 0 3px 6px rgb(12, 12, 12);
+}
+.ButtonBox {
+  padding-top: 10px;
+}
+
+.ButtonBox-header {
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+}
+
+button {
+  background-color: #202b33;
+  border: solid 1px transparent;
+  border-radius: 4px;
+  padding: 10px 20px;
+  color: #ffffff;
+  font-size: 16px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #106ba3;
+}
+.ButtonBox-display {
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+.ButtonBox-display button {
+  margin: 0 15px;
+  border: solid 1px transparent;
+  border-radius: 2px;
+  padding: 4px 16px;
+  color: #ffffff;
+
+  font-size: 16px;
+}
+.ButtonBox-display button:hover {
+  background-color: #106ba3;
+}
+.ButtonBox-label {
+  font-size: 18px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.ButtonBox-time {
+  font-size: 36px;
+  margin: 5px 0;
+}

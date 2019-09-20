@@ -7,6 +7,7 @@
 import React, {useState} from "react";
 import "./App.css";
 import BottomRow from "./BottomRow";
+import Countdown from "./Countdown";
 
 String.prototype.toProperCase = function() {
   return this.charAt(0).toUpperCase() + this.slice(1).toLowerCase();
@@ -29,18 +30,17 @@ function App(props) {
   const [quarter, setQuarter] = useState(1);
 
   //#region Internal Functions
-  //TODO: Implement countdown timer
-  const toggleTimer = (timerValue) => {
-    //Start/Stop Timer each time button is pressed.
-    setTimer(timerValue);
-  };
-
   const nextDown = () => {
     setDown(down<4 ? down+1 : 1);
   };
 
   const nextQuarter = () => {
-    setQuarter(quarter<4 ? quarter+1 : 4);
+    if (quarter<4) {
+      setQuarter(quarter+1);
+      setTimer("15:00");
+    } else {
+      setTimer("00:00");
+    }
   };
 
   const addScore = (targetTeam, scoreValue) => {
@@ -95,8 +95,8 @@ function App(props) {
   //#endregion Internal Functions
 
   return (
-    <div className="container">
-      <section className="scoreboard">
+    <React.Fragment>
+      <section className="scoreboard contain">
         <div className="topRow">
           <TeamScore side={"home"} name={"Lions"} score={homeScore} />
           <Timer timer={timer} />
@@ -104,31 +104,48 @@ function App(props) {
         </div>
         <BottomRow down={down} toGo={toGo} ballOn={ballOn} quarter={quarter} />
       </section>
-      {/* <section className="buttons">
-        <TimerButton toggleTimer={toggleTimer} />
-      </section> */}
-      <section className="buttons between">
-        <span>&nbsp;&nbsp;&nbsp;Down:</span>
-        <span>Ball On:</span>
-        <span>Quarter:&nbsp;&nbsp;</span>
-      </section>
-      <section className="buttons between">
-        <NextDownButton nextDown={nextDown} />
-        <BallOnButtons ballOnReset={ballOnReset} ballOnAdjust={ballOnAdjust} />
-        <NextQuarterButton nextQuarter={nextQuarter} />
-      </section>
-      <section className="buttons">
-        <span>Home:</span>
-        <span>Away:</span>
-      </section>
-      <section className="buttons">
-        <TeamButtons side={"home"} addScore={addScore} />
-        <TeamButtons side={"away"} addScore={addScore} />
-      </section>
-      <section className="buttons">
+
+      <div className="container contain">
+        <section className="container contain-quarter">
+          <div className="Timers ButtonBox center-within column contain-100">
+            <Countdown />
+            <NextQuarterButton nextQuarter={nextQuarter} />
+          </div>
+        </section>
+  
+        <section className="container column contain-others contain-70">
+          <div className="ButtonBox contain-others-inner">
+            <div className="ButtonBox-header">Ball</div>
+            <section className="container between">
+              <div className="contain-15 center-width">
+                <span>Down:</span><br/>
+                <NextDownButton nextDown={nextDown} />
+              </div>
+              <div className="center-width">
+                <span>Ball On:</span><br/>
+                <BallOnButtons ballOnReset={ballOnReset} ballOnAdjust={ballOnAdjust} />
+              </div>
+            </section>
+          </div>
+    
+          <div className="ButtonBox contain-others-inner">
+            <div className="ButtonBox-header">Team Scoring</div>
+            <section className="container">
+              <span>Home:</span>
+              <span>Away:</span>
+            </section>
+            <section className="container">
+              <TeamButtons side={"home"} addScore={addScore} />
+              <TeamButtons side={"away"} addScore={addScore} />
+            </section>
+          </div>
+        </section>
+      </div>
+
+      <section className="container">
         <ResetButton reset={reset} />
       </section>
-    </div>
+    </React.Fragment>
   );
 }
 
@@ -145,12 +162,6 @@ function TeamScore(props) {
       <h2 className={props.side+"__name"}>{props.name}</h2>
       <div className={props.side+"__score"}>{props.score}</div>
     </div>
-  );
-}
-
-function TimerButton(props) {
-  return (
-    <button onClick={()=>props.toggleTimer("00:07")}>Start/Stop Timer</button>
   );
 }
 
@@ -191,10 +202,6 @@ function ResetButton(props) {
   return (
     <button id="reset" onClick={()=>props.reset()}>Reset</button>
   );
-}
-
-function tick() {
-  return null;
 }
 //#endregion
 
