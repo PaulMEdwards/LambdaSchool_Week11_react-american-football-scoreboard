@@ -64,6 +64,8 @@ button:hover {
   margin-bottom: 10px;
 }
 .ButtonBox-time {
-  font-size: 36px;
+  font-family: "Ozone";
+  font-size: 5rem;
+  /* font-size: 36px; */
   margin: 5px 0;
 }

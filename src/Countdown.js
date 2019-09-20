@@ -2,11 +2,21 @@ import React, { Component } from "react";
 import "./Countdown.css";
 
 class Countdown extends Component {
-  state = {
-    timerOn: false,
-    timerStart: 900000,
-    timerTime: 900000
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      timerOn: false,
+      timerStart: 900000,
+      timerTime: this.props.timer
+    };
+    // this.timer = this.state.timerStart;
+  }
+
+  // state = {
+  //   timerOn: false,
+  //   timerStart: 900000,
+  //   timerTime: timer
+  // };
 
   startTimer = () => {
     this.setState({
@@ -69,7 +79,7 @@ class Countdown extends Component {
           <button onClick={() => this.adjustTimer("incSeconds")}>&#8679;</button>
 
           <div className="ButtonBox-time">
-            {minutes} : {seconds}
+            <TimeBox minutes={minutes} seconds={seconds} />
           </div>
 
           <button onClick={() => this.adjustTimer("decMinutes")}>&#8681;</button>
@@ -102,6 +112,14 @@ class Countdown extends Component {
       </React.Fragment>
     );
   }
+}
+
+export function TimeBox(props) {
+  return (
+    <span>
+      {props.minutes}:{props.seconds}
+    </span>
+  );
 }
 
 export default Countdown;

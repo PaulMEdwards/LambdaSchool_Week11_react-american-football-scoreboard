@@ -8,6 +8,7 @@ import React, {useState} from "react";
 import "./App.css";
 import BottomRow from "./BottomRow";
 import Countdown from "./Countdown";
+import {TimeBox} from "./Countdown";
 
 String.prototype.toProperCase = function() {
   return this.charAt(0).toUpperCase() + this.slice(1).toLowerCase();
@@ -21,7 +22,9 @@ String.prototype.toCamelCase = function(separator = ' ') {
 };
 
 function App(props) {
-  const [timer, setTimer] = useState("15:00");
+  const [timer, setTimer] = useState(900000); //"15:00");
+  const [minutes] = useState(0);
+  const [seconds] = useState(0);
   const [homeScore, setHomeScore] = useState(0);
   const [awayScore, setAwayScore] = useState(0);
   const [down, setDown] = useState(1);
@@ -37,9 +40,9 @@ function App(props) {
   const nextQuarter = () => {
     if (quarter<4) {
       setQuarter(quarter+1);
-      setTimer("15:00");
+      setTimer(900000); //"15:00");
     } else {
-      setTimer("00:00");
+      setTimer(0);      //"00:00");
     }
   };
 
@@ -84,7 +87,7 @@ function App(props) {
   };
 
   const reset = () => {
-    setTimer("15:00");
+    setTimer(900000); //"15:00");
     setHomeScore(0);
     setAwayScore(0);
     setDown(1);
@@ -99,20 +102,13 @@ function App(props) {
       <section className="scoreboard contain">
         <div className="topRow">
           <TeamScore side={"home"} name={"Lions"} score={homeScore} />
-          <Timer timer={timer} />
+          <Timer timer={timer} minutes={minutes} seconds={seconds} />
           <TeamScore side={"away"} name={"Tigers"} score={awayScore} />
         </div>
         <BottomRow down={down} toGo={toGo} ballOn={ballOn} quarter={quarter} />
       </section>
 
       <div className="container contain">
-        <section className="container contain-quarter">
-          <div className="Timers ButtonBox center-within column contain-100">
-            <Countdown />
-            <NextQuarterButton nextQuarter={nextQuarter} />
-          </div>
-        </section>
-  
         <section className="container column contain-others contain-70">
           <div className="ButtonBox contain-others-inner">
             <div className="ButtonBox-header">Ball</div>
@@ -127,7 +123,7 @@ function App(props) {
               </div>
             </section>
           </div>
-    
+
           <div className="ButtonBox contain-others-inner">
             <div className="ButtonBox-header">Team Scoring</div>
             <section className="container">
@@ -138,6 +134,13 @@ function App(props) {
               <TeamButtons side={"home"} addScore={addScore} />
               <TeamButtons side={"away"} addScore={addScore} />
             </section>
+          </div>
+        </section>
+
+        <section className="container contain-quarter">
+          <div className="Timers ButtonBox center-within column contain-100">
+            <Countdown timer={timer}/>
+            <NextQuarterButton nextQuarter={nextQuarter} />
           </div>
         </section>
       </div>
@@ -152,7 +155,10 @@ function App(props) {
 //#region Components
 function Timer(props) {
   return (
-    <div className="timer">{props.timer}</div>
+    <React.Fragment>
+      {/* <div className="timer">{props.timer}</div> */}
+      <div className="timer"><TimeBox minutes={props.minutes} seconds={props.seconds} /></div>
+    </React.Fragment>
   );
 }
 
