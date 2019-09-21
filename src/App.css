@@ -4,7 +4,6 @@
 }
 
 .scoreboard {
-  width: 58%;
   margin: 10rem auto;
   background-color: #0b5402;
   color: white;
@@ -106,11 +105,61 @@
   border: 1px solid white;
 }
 
-.buttons {
-  width: 50%;
-  margin: 0 auto;
+.contain {
+  width: 58%;
+}
+.contain-quarter {
+  min-width: 200px;
+}
+.contain-15 {
+  width: 15%;
+}
+.contain-30 {
+  width: 30%;
+}
+.contain-others {
+  min-width: 575px;
+}
+.contain-70 {
+  width: 70%;
+}
+.contain-100 {
+  width: 100%;
+}
+.contain-remain {
+  width: auto;
+}
+.contain-others-inner {
+  width: 100%;
+  height: 50%;
+}
+.container {
+  /* width: 50%; */
+  margin: 1rem auto;
   display: flex;
   justify-content: space-around;
+  color: white;
+}
+.center-width {
+  text-align: center;
+  margin: 0 auto;
+}
+.between {
+  /* justify-content: space-between; */
+}
+.around {
+  justify-content: space-around;
+}
+.center-within {
+  display: flex;
+  justify-content: space-around;
+  place-items: center;
+}
+.column {
+  flex-direction: column;
+}
+.row {
+  flex-direction: row;
 }
 
 .homeButtons__touchdown,
