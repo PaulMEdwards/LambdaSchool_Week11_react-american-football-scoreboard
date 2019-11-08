@@ -2,6 +2,10 @@
 
 This project allows you to practice the concepts and techniques learned in this module and apply them in a concrete project. This module explored React components and component state. During the module, you studied what React is, what React components are and how to build them, what state is and how to make a component stateful, and how to change a components state with a click handler. In your project you will demonstrate proficiency of these subjects and principles by creating an application using each of these.
 
+## Live Site
+
+https://paulmedwards.github.io/LambdaSchool_Week11_react-american-football-scoreboard/
+
 ## Instructions
 
 **Read these instructions carefully. Understand exactly what is expected _before_ starting this project.**
@@ -12,7 +16,7 @@ Commit your code regularly and meaningfully. This helps both you and your team l
 
 ### Description
 
-In this project, you build an app that diplays a scoreboard for an american football game. There will be two buttons for each team - one will increment that team's score by three points (for a "field goal") and the other will increment that team's score by seven points (for a "touchdown" and "extra point"). The css is already done for you. You should focus your efforts on the functionality of the app.
+In this project, you build an app that displays a scoreboard for an american football game. There will be two buttons for each team - one will increment that team's score by three points (for a "field goal") and the other will increment that team's score by seven points (for a "touchdown" and "extra point"). The css is already done for you. You should focus your efforts on the functionality of the app.
 
 ## Project Set Up
 
